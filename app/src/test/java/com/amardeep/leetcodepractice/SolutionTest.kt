@@ -79,4 +79,11 @@ class SolutionTest {
         solution.groupAnagrams2(arrayOf("act","pots","tops","cat","stop","hat"))
 
     }
+
+    @Test
+    fun testF() {
+        val solution = Solution()
+
+        solution.topKFrequent(intArrayOf(4,1,-1,2,-1,2,3), 2)
+    }
 }
