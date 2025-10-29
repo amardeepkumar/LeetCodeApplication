@@ -13,6 +13,7 @@ class ArraySolution {
     }
 
     fun decode(str: String): MutableList<String> {
+        if (str.isEmpty()) return mutableListOf()
         return str.split(" ").toMutableList()
     }
     //------------------------------------------------------

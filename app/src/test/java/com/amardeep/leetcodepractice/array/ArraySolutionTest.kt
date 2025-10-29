@@ -37,6 +37,6 @@ class ArraySolutionTest {
     fun testDecodeWithEmpty() {
         val str = ""
         val result = solution.decode(str)
-        assertEquals(listOf(""), result)
+        assertEquals(emptyList<String>(), result)
     }
 }
