@@ -21,14 +21,14 @@ class ArraySolutionTest {
 
     @Test
     fun testEncodeWithEmpty() {
-        val strs = mutableListOf("")
+        val strs = mutableListOf<String>()
         val result = solution.encode(strs)
         assertEquals("", result)
     }
 
     @Test
     fun testDecode() {
-        val str = "Hello World !"
+        val str = "5#Hello5#World1#!"
         val result = solution.decode(str)
         assertEquals(listOf("Hello", "World", "!"), result)
     }
