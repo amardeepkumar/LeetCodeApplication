@@ -39,4 +39,19 @@ class ArraySolutionTest {
         val result = solution.decode(str)
         assertEquals(emptyList<String>(), result)
     }
+
+    @Test
+    fun `Test with multiple disjoint consecutive sequences`() {
+        // Input: [1, 2, 3, 10, 11, 12, 13, 5, 6]
+        // Expected Output: 4
+        // Rationale: The function should correctly identify the longest sequence ([10, 11, 12, 13]) among multiple sequences.
+        val result = solution.longestConsecutive(intArrayOf(1, 2, 3, 10, 11, 12, 13, 5, 6))
+        assertEquals(4, result)
+    }
+
+    @Test
+    fun `Test zigzag`() {
+        val result = solution.zigzag("PAYPALISHIRING", 4)
+        assertEquals(result, "PINALSIGYAHRPI")
+    }
 }
