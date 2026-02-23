@@ -5,6 +5,13 @@ import org.junit.Test
 
 
 class SolutionTest {
+
+    private lateinit var solution: Solution
+    @Before
+    fun setUp() {
+        solution = Solution()
+    }
+
     @Test
     fun twoSum() {
     }

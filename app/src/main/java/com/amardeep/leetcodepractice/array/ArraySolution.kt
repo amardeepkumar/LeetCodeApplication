@@ -3,6 +3,31 @@ package com.amardeep.leetcodepractice.array
 import kotlin.math.max
 
 class ArraySolution {
+
+    //https://leetcode.com/problems/valid-anagram/description/
+    fun isAnagram(s: String, t: String): Boolean {
+
+        if (s.length != t.length) {
+            return false
+        }
+        val arr = IntArray(26)
+        for (c in s) {
+            arr[c - 'a'] += 1
+        }
+
+        for (c in t) {
+            arr[c - 'a'] -= 1
+        }
+
+        for (c in arr) {
+            if (c != 0) {
+                return false
+            }
+        }
+
+        return true
+    }
+
     //https://leetcode.com/problems/two-sum/
     fun twoSum(nums: IntArray, target: Int): IntArray {
         val map = HashMap<Int, Int>()

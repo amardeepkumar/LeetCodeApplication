@@ -49,6 +49,12 @@ class ArraySolutionTest {
         assertEquals(4, result)
     }
 
+
+    @Test
+    fun testAnagram() {
+        assertEquals(solution.isAnagram("hello", "olehh"), false)
+    }
+
     @Test
     fun `Test zigzag`() {
         val result = solution.zigzag("PAYPALISHIRING", 4)

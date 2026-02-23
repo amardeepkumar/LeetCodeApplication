@@ -4,25 +4,6 @@ import kotlin.collections.groupingBy
 import kotlin.collections.toIntArray
 
 class Solution {
-    /**
-     * Finds indices of the two numbers such that they add up to target.
-     * @param nums Input array of integers
-     * @param target Target sum
-     * @return IntArray containing the indices of the two numbers
-     * @throws IllegalArgumentException if no solution is found
-     */
-    //https://leetcode.com/problems/two-sum/
-    fun twoSum(nums: IntArray, target: Int): IntArray {
-        val map = HashMap<Int, Int>()
-
-        for ((index, num) in nums.withIndex()) {
-            val complement = target - num
-            map[complement]?.let { return intArrayOf(it, index) }
-            map[num] = index
-        }
-
-        throw IllegalArgumentException("No two sum solution")
-    }
 
 
     private fun countSetBits(n: Long): Long {
