@@ -122,12 +122,7 @@ class Solution {
 
         for (str in strs) {
             val map = str.groupingBy { it }.eachCount()
-
-            if (resultMap[map] != null) {
-                resultMap[map]?.add(str)
-            } else {
-                resultMap[map] = arrayListOf(str)
-            }
+            resultMap.getOrPut(map) { arrayListOf() }.add(str)
         }
         return resultMap.values.toList()
     }
@@ -145,55 +140,6 @@ class Solution {
         }
 
         return res.values.toList()
-    }
-
-    //https://leetcode.com/problems/top-k-frequent-elements/description/
-    fun topKFrequent(nums: IntArray, k: Int): IntArray {
-        val count = HashMap<Int, Int>()
-        val freq = List(nums.size + 1) { mutableListOf<Int>() }
-
-        for (num in nums) {
-            count[num] = count.getOrDefault(num, 0) + 1
-        }
-        for ((num, cnt) in count) {
-            freq[cnt].add(num)
-        }
-
-        val res = mutableListOf<Int>()
-        for (i in freq.size - 1 downTo 1) {
-            for (num in freq[i]) {
-                res.add(num)
-                if (res.size == k) {
-                    return res.toIntArray()
-                }
-            }
-        }
-        return res.toIntArray()
-    }
-
-    fun topKFrequentr(nums: IntArray, k: Int): IntArray {
-        val countMap = mutableMapOf<Int, Int>()
-
-        val freqBucket = List(nums.size + 1) { mutableListOf<Int>() }
-
-
-        for (num in nums) {
-            countMap[num] = countMap.getOrDefault(num, 0) + 1
-        }
-
-        for ((num, occurence) in countMap) {
-            freqBucket[occurence].add(num)
-        }
-        val result = mutableListOf<Int>()
-        for (i in freqBucket.size - 1 downTo 1) {
-            for (num in freqBucket[i]) {
-                result.add(num)
-                if (result.size == k) {
-                    return result.toIntArray()
-                }
-            }
-        }
-        return result.toIntArray()
     }
 }
 

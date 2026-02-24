@@ -1,5 +1,6 @@
 package com.amardeep.leetcodepractice.array
 
+import com.amardeep.leetcodepractice.Solution
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -56,8 +57,60 @@ class ArraySolutionTest {
     }
 
     @Test
+    fun testTopKFrequent() {
+        assertEquals(solution.topKFrequent(intArrayOf(1,1,1,2,2,3), 2), intArrayOf(1, 2))
+    }
+
+    @Test
     fun `Test zigzag`() {
         val result = solution.zigzag("PAYPALISHIRING", 4)
         assertEquals(result, "PINALSIGYAHRPI")
+    }
+
+    @Test
+    fun testThreeSum_WithMultipleTriplets() {
+        val nums = intArrayOf(-1, 0, 1, 2, -1, -4)
+        val expected = listOf(
+            listOf(-1, -1, 2),
+            listOf(-1, 0, 1)
+        )
+        val result = solution.threeSum(nums)
+        assertEquals(expected.sortedBy { it.toString() }, result.sortedBy { it.toString() })
+    }
+
+    @Test
+    fun testThreeSum_NoValidTriplets() {
+        val nums = intArrayOf(1, 2, -2, -1)
+        val expected = emptyList<List<Int>>()
+        val result = solution.threeSum(nums)
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun testThreeSum_AllZeros() {
+        val nums = intArrayOf(0, 0, 0, 0)
+        val expected = listOf(
+            listOf(0, 0, 0)
+        )
+        val result = solution.threeSum(nums)
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun testThreeSum_WithDuplicates() {
+        val nums = intArrayOf(-2, 0, 0, 2, 2)
+        val expected = listOf(
+            listOf(-2, 0, 2)
+        )
+        val result = solution.threeSum(nums)
+        assertEquals(expected, result)
+    }
+
+
+    @Test
+    fun testGroupAnagrams2() {
+        val solution = Solution()
+
+        solution.groupAnagrams2(arrayOf("act","pots","tops","cat","stop","hat"))
     }
 }
