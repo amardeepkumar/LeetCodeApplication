@@ -3,6 +3,8 @@ package com.amardeep.leetcodepractice.twopointer
 import org.junit.Before
 import org.junit.Test
 
+import junit.framework.TestCase.assertEquals
+
 class TwoPointerSolutionTest {
     lateinit var twoPointerSolution: TwoPointerSolution
 
@@ -42,8 +44,7 @@ class TwoPointerSolutionTest {
 
     @Test
     fun `Palindrome with mixed case`() {
-        // Test with a mixed-case palindrome like 'RaceCar'. The function uses s.lowercase(), so this should pass.
-        // TODO implement test
+        assertEquals(twoPointerSolution.isPalindrome("0P0"), true)
     }
     
     @Test

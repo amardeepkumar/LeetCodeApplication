@@ -7,10 +7,10 @@ class TwoPointerSolution {
         if (s.isEmpty()) return true
         var i = 0
         var j = s.length - 1
-        var str = s.lowercase()
+        val str = s.lowercase()
 
         while (i < j) {
-            when (str[i].toInt()) {
+            when (str[i].code) {
                 in 97..122 -> {}
                 in 48..57 -> {}
                 else -> {
@@ -20,7 +20,7 @@ class TwoPointerSolution {
 
             }
 
-            when (str[j].toInt()) {
+            when (str[j].code) {
                 in 97..122 -> {}
                 in 48..57 -> {}
                 else -> {
