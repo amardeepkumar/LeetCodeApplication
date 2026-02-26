@@ -3,7 +3,6 @@ package com.amardeep.leetcodepractice.array
 import kotlin.math.max
 
 class ArraySolution {
-
     //https://leetcode.com/problems/valid-anagram/description/
     fun isAnagram(s: String, t: String): Boolean {
 
@@ -66,6 +65,27 @@ class ArraySolution {
         }
 
         return result
+    }
+
+    fun encode2(strs: List<String>): String {
+        var result = StringBuilder()
+        for (str in strs) {
+            result.append(str.length).append("#").append(str)
+        }
+        return result.toString()
+    }
+
+    fun decode2(str: String): List<String> {
+        val resultList = mutableListOf<String>()
+        var i = 0
+        while (i < str.length) {
+            val hashPosition = str.indexOf('#', i)
+            val wordLength = str.substring(i, hashPosition).toInt()
+            val content = str.substring(hashPosition + 1, hashPosition + wordLength + 1)
+            resultList.add(content)
+            i = hashPosition + wordLength + 1
+        }
+        return resultList
     }
     //------------------------------------------------------
 
