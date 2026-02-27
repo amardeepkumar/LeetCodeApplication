@@ -1,5 +1,7 @@
 package com.amardeep.leetcodepractice.twopointer
 
+import kotlin.math.max
+
 class TwoPointerSolution {
     //https://leetcode.com/problems/valid-palindrome/description/
     fun isPalindrome(s: String): Boolean {
@@ -89,6 +91,31 @@ class TwoPointerSolution {
             }
         }
 
+        return result
+    }
+
+    //https://leetcode.com/problems/container-with-most-water/
+    /*
+    Input: height = [1,8,6,2,5,4,8,3,7]
+    Output: 49
+    Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7].
+    In this case, the max area of water (blue section) the container can contain is 49.
+     */
+    fun maxArea(height: IntArray): Int {
+        var result = 0
+
+        var lp = 0
+        var rp = height.size - 1
+
+        while (lp < rp) {
+            if (height[lp] > height[rp]) {
+                result = max(result, height[rp] * (rp - lp))
+                rp--
+            } else {
+                result = max(result,height[lp] * (rp - lp))
+                lp++
+            }
+        }
         return result
     }
 }
