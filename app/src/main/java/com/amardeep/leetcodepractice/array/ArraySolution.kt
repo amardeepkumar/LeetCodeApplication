@@ -127,40 +127,6 @@ class ArraySolution {
         return result
     }
 
-    fun threeSum(nums: IntArray): List<List<Int>> {
-        val result = mutableListOf<List<Int>>()
-        nums.sort()
-        for ((i, num) in nums.withIndex()) {
-            if (num > 0) {
-                break
-            }
-            if (i > 0 && nums[i - 1] == num) {
-                continue
-            }
-            var lp = i + 1
-            var rp = nums.size - 1
-
-            while (lp < rp) {
-                val threeSum = num + nums[lp] + nums[rp]
-
-                when {
-                    threeSum > 0 -> rp--
-                    threeSum < 0 -> lp++
-                    else -> {
-                        result.add(listOf(num, nums[lp], nums[rp]))
-                        lp++
-                        rp--
-                        while (lp < rp && nums[lp] == nums[lp - 1]) {
-                            lp++
-                        }
-                    }
-                }
-            }
-        }
-
-        return result
-    }
-
     //https://leetcode.com/problems/top-k-frequent-elements/description/
     fun topKFrequent(nums: IntArray, k: Int): IntArray {
         val count = HashMap<Int, Int>()
