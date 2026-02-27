@@ -1,5 +1,6 @@
 package com.amardeep.leetcodepractice.array
 
+import com.amardeep.leetcodepractice.Solution
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -49,9 +50,27 @@ class ArraySolutionTest {
         assertEquals(4, result)
     }
 
+
+    @Test
+    fun testAnagram() {
+        assertEquals(solution.isAnagram("hello", "olehh"), false)
+    }
+
+    @Test
+    fun testTopKFrequent() {
+        assertEquals(solution.topKFrequent(intArrayOf(1,1,1,2,2,3), 2), intArrayOf(1, 2))
+    }
+
     @Test
     fun `Test zigzag`() {
         val result = solution.zigzag("PAYPALISHIRING", 4)
         assertEquals(result, "PINALSIGYAHRPI")
+    }
+
+    @Test
+    fun testGroupAnagrams2() {
+        val solution = Solution()
+
+        solution.groupAnagrams2(arrayOf("act","pots","tops","cat","stop","hat"))
     }
 }

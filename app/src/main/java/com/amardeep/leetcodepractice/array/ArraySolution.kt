@@ -3,6 +3,30 @@ package com.amardeep.leetcodepractice.array
 import kotlin.math.max
 
 class ArraySolution {
+    //https://leetcode.com/problems/valid-anagram/description/
+    fun isAnagram(s: String, t: String): Boolean {
+
+        if (s.length != t.length) {
+            return false
+        }
+        val arr = IntArray(26)
+        for (c in s) {
+            arr[c - 'a'] += 1
+        }
+
+        for (c in t) {
+            arr[c - 'a'] -= 1
+        }
+
+        for (c in arr) {
+            if (c != 0) {
+                return false
+            }
+        }
+
+        return true
+    }
+
     //https://leetcode.com/problems/two-sum/
     fun twoSum(nums: IntArray, target: Int): IntArray {
         val map = HashMap<Int, Int>()
@@ -42,6 +66,27 @@ class ArraySolution {
 
         return result
     }
+
+    fun encode2(strs: List<String>): String {
+        var result = StringBuilder()
+        for (str in strs) {
+            result.append(str.length).append("#").append(str)
+        }
+        return result.toString()
+    }
+
+    fun decode2(str: String): List<String> {
+        val resultList = mutableListOf<String>()
+        var i = 0
+        while (i < str.length) {
+            val hashPosition = str.indexOf('#', i)
+            val wordLength = str.substring(i, hashPosition).toInt()
+            val content = str.substring(hashPosition + 1, hashPosition + wordLength + 1)
+            resultList.add(content)
+            i = hashPosition + wordLength + 1
+        }
+        return resultList
+    }
     //------------------------------------------------------
 
     //https://leetcode.com/problems/longest-consecutive-sequence/
@@ -52,7 +97,7 @@ class ArraySolution {
         for (i in numSet) {
             if (!numSet.contains(i - 1)) {
                 var length = 1
-                while(numSet.contains(i + length)) {
+                while (numSet.contains(i + length)) {
                     length++
                 }
                 longest = max(length, longest)
@@ -60,7 +105,6 @@ class ArraySolution {
         }
         return longest
     }
-
     //https://leetcode.com/problems/zigzag-conversion/description/
     fun zigzag(s: String, numRows: Int): String {
         val charList = List(numRows) { mutableListOf<Char>() }
@@ -82,4 +126,97 @@ class ArraySolution {
         }
         return result
     }
+
+    //https://leetcode.com/problems/top-k-frequent-elements/description/
+    fun topKFrequent(nums: IntArray, k: Int): IntArray {
+        val count = HashMap<Int, Int>()
+        val freq = List(nums.size + 1) { mutableListOf<Int>() }
+
+        for (num in nums) {
+            count[num] = count.getOrDefault(num, 0) + 1
+        }
+        for ((num, cnt) in count) {
+            freq[cnt].add(num)
+        }
+
+        val res = mutableListOf<Int>()
+        for (i in freq.size - 1 downTo 1) {
+            for (num in freq[i]) {
+                res.add(num)
+                if (res.size == k) {
+                    return res.toIntArray()
+                }
+            }
+        }
+        return res.toIntArray()
+    }
+
+    fun topKFrequent2(nums: IntArray, k: Int): IntArray {
+        val countMap = mutableMapOf<Int, Int>()
+
+        val freqBucket = List(nums.size + 1) { mutableListOf<Int>() }
+
+
+        for (num in nums) {
+            countMap[num] = countMap.getOrDefault(num, 0) + 1
+        }
+
+        for ((num, occurence) in countMap) {
+            freqBucket[occurence].add(num)
+        }
+        val result = mutableListOf<Int>()
+        for (i in freqBucket.size - 1 downTo 1) {
+            for (num in freqBucket[i]) {
+                result.add(num)
+                if (result.size == k) {
+                    return result.toIntArray()
+                }
+            }
+        }
+        return result.toIntArray()
+    }
+
+    fun topKFrequent3(nums: IntArray, k: Int): IntArray {
+
+        //Input: nums = [1,1,1,2,2,3], k = 2
+
+        //Output: [1,2]
+        return nums.groupBy { it }                // Group numbers
+            .mapValues { it.value.size }          // Count occurrences
+            .entries
+            .sortedByDescending { it.value }      // Sort by frequency
+            .take(k)                              // Take top k
+            .map { it.key }                       // Extract keys
+            .toIntArray()
+    }
+
+
+    /*fun shipWithinDays(weights: IntArray, days: Int): Int {
+        //find the sum of weight
+        //get the avg of total weight
+        //Check the output starting from avg
+
+        var minAvg = weights.sum() / days
+        var dayCont = days
+
+        while (dayCont > 0) {
+
+
+            var lp = 0
+            var w =  weights[lp]
+            var rp = lp + 1
+            while (rp < weights.size) {
+                if (minAvg > (w + weights[rp])) {
+                    w = w + weights[rp]
+                    rp++
+                    dayCont--
+                } else {
+                    minAvg++
+                    rp = lp + 1
+                }
+            }
+
+        }
+
+    }*/
 }

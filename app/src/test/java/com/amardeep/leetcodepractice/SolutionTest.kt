@@ -1,17 +1,24 @@
 package com.amardeep.leetcodepractice
 
 import junit.framework.TestCase.assertEquals
+import org.junit.Before
 import org.junit.Test
 
 
 class SolutionTest {
+
+    private lateinit var solution: Solution
+    @Before
+    fun setUp() {
+        solution = Solution()
+    }
+
     @Test
     fun twoSum() {
     }
 
     @Test
     fun countOnesTest() {
-        val solution = Solution()
         val left = 4L// 100
         val right = 7L//111
         val result = solution.countOnes(left, right)
@@ -20,7 +27,6 @@ class SolutionTest {
 
     @Test
     fun spiralOrderTest() {
-        val solution = Solution()
         val matrix = arrayOf(
             intArrayOf(1, 2, 3),
             intArrayOf(4, 5, 6),
@@ -32,7 +38,6 @@ class SolutionTest {
 
     @Test
     fun mergeTest() {
-        val solution = Solution()
         val products = listOf("TV", "Phone", "Phone", "TV", "Bulb")
 
         val result = solution.findMostSoldItem(products)
@@ -45,7 +50,7 @@ class SolutionTest {
 
         val products = listOf("TV", "Phone", "Phone", "TV", "Bulb")
 
-        val result = SolutionJava.findMostSoldItem(products)
+        val result = solution.findMostSoldItem(products)
         println(result)
     }
     
@@ -72,18 +77,4 @@ class SolutionTest {
         assertEquals("A : 2", SolutionJava.findMostSoldItem(items5))
     }
 
-    @Test
-    fun testGroupAnagrams2() {
-        val solution = Solution()
-
-        solution.groupAnagrams2(arrayOf("act","pots","tops","cat","stop","hat"))
-
-    }
-
-    @Test
-    fun testF() {
-        val solution = Solution()
-
-        solution.topKFrequent(intArrayOf(4,1,-1,2,-1,2,3), 2)
-    }
 }

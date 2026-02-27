@@ -3,6 +3,8 @@ package com.amardeep.leetcodepractice.twopointer
 import org.junit.Before
 import org.junit.Test
 
+import junit.framework.TestCase.assertEquals
+
 class TwoPointerSolutionTest {
     lateinit var twoPointerSolution: TwoPointerSolution
 
@@ -42,8 +44,7 @@ class TwoPointerSolutionTest {
 
     @Test
     fun `Palindrome with mixed case`() {
-        // Test with a mixed-case palindrome like 'RaceCar'. The function uses s.lowercase(), so this should pass.
-        // TODO implement test
+        assertEquals(twoPointerSolution.isPalindrome("0P0"), true)
     }
     
     @Test
@@ -116,4 +117,42 @@ class TwoPointerSolutionTest {
         // TODO implement test
     }
 
+    @Test
+    fun testThreeSum_WithMultipleTriplets() {
+        val nums = intArrayOf(-1, 0, 1, 2, -1, -4)
+        val expected = listOf(
+            listOf(-1, -1, 2),
+            listOf(-1, 0, 1)
+        )
+        val result = twoPointerSolution.threeSum(nums)
+        assertEquals(expected.sortedBy { it.toString() }, result.sortedBy { it.toString() })
+    }
+
+    @Test
+    fun testThreeSum_NoValidTriplets() {
+        val nums = intArrayOf(1, 2, -2, -1)
+        val expected = emptyList<List<Int>>()
+        val result = twoPointerSolution.threeSum(nums)
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun testThreeSum_AllZeros() {
+        val nums = intArrayOf(0, 0, 0, 0)
+        val expected = listOf(
+            listOf(0, 0, 0)
+        )
+        val result = twoPointerSolution.threeSum(nums)
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun testThreeSum_WithDuplicates() {
+        val nums = intArrayOf(-2, 0, 0, 2, 2)
+        val expected = listOf(
+            listOf(-2, 0, 2)
+        )
+        val result = twoPointerSolution.threeSum(nums)
+        assertEquals(expected, result)
+    }
 }
